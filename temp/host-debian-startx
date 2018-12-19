@@ -1,0 +1,22 @@
+#!/bin/sh
+
+pkill nickel
+eink_enable_autoupdate
+
+rm -rf /debian/tmp/* /debian/tmp/.* 2>/dev/null
+
+mount -t proc proc /debian/proc
+mount -o bind /dev /debian/dev
+mount -o bind /dev/pts /debian/dev/pts
+mount -t sysfs sysfs /debian/sys
+
+mount -o bind,user,rw,exec,umask=000 /mnt/onboard /debian/mnt/onboard
+mount -o bind / /debian/host
+
+cp -L /etc/wpa_supplicant/wpa_supplicant.conf /debian/etc/wpa_supplicant/wpa_supplicant.conf
+cp -L /etc/resolv.conf /debian/etc/resolv.conf
+cp /etc/hosts /debian/etc/hosts
+grep -v debian /proc/mounts > /debian/etc/mtab
+
+echo 0 > /sys/class/leds/pmic_ledsb/brightness
+chroot /debian sudo -u marek -H /bin/bash --login -c "startx"

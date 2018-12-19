@@ -1,0 +1,2 @@
+sudo ntpdate-debian
+sudo hwclock -w

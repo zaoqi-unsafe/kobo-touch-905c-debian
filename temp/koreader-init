@@ -1,0 +1,3 @@
+
+sudo apt purge openjdk-7-* java-common libatk-wrapper-java libatk-wrapper-java-jni
+sudo aptitude install ant openjdk-8-jdk build-essential git patch wget unzip gettext make automake autoconf cmake libtool nasm luarocks libssl-dev libffi-dev libsdl2-dev libc6-dev xutils-dev zlib1g linux-libc-dev

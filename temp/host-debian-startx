@@ -19,4 +19,4 @@ cp /etc/hosts /debian/etc/hosts
 grep -v debian /proc/mounts > /debian/etc/mtab
 
 echo 0 > /sys/class/leds/pmic_ledsb/brightness
-chroot /debian sudo -u marek -H /bin/bash --login -c "startx"
+chroot /debian sudo -u marek -H /bin/bash --login -c "cd;startx"

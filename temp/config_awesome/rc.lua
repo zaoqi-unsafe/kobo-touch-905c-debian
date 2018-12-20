@@ -342,11 +342,7 @@ globalkeys = awful.util.table.join(
         local x = get_focus_client_ornil()
         if x and x.instance == mylockscreen then
             x:kill()
-local c = get_focus_client_ornil()
-if c then
-            maximize_client(c)
-            toggle_client_maximize(c)
-        end
+            bug_fullscreen_fix()
         else
             awesome.quit()
         end
@@ -358,11 +354,7 @@ clientkeys = awful.util.table.join(
         local x = get_focus_client_ornil()
         if x and x.instance == mylockscreen then
             x:kill()
-local c = get_focus_client_ornil()
-if c then
-            maximize_client(c)
-            toggle_client_maximize(c)
-        end 
+            bug_fullscreen_fix()
         else
             toggle_client_maximize(c)
         end
@@ -443,10 +435,7 @@ c.ontop=true
           else
               c:geometry({ x = 0, y = 350, width = 800, height = 250 })
           end
-      end },
-
-    { rule = { instance = "luajit" },
-      properties = { floating = true } }
+      end }
 }
 -- }}}
 
@@ -504,4 +493,12 @@ function get_focus_client_ornil()
                 return visible[1]
             end
         end
+end
+
+function bug_fullscreen_fix()
+local c = get_focus_client_ornil()
+if c then
+            maximize_client(c)
+            toggle_client_maximize(c)
+        end 
 end

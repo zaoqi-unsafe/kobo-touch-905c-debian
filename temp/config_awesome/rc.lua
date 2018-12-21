@@ -126,7 +126,9 @@ menupower={
     { "Lock", function()
         awful.util.spawn(mylockscreen)
     end },
-    --[WIP] { "Reboot to Nickel", function() awesome.exec("sudo /bin/sh -c 'mount -t proc proc /host/proc;mount -o bind /dev /host/dev;mount -o bind /dev/pts /host/dev/pts;mount -t sysfs sysfs /host/sys;chroot /host /nickel-start'") end  },
+    { "Reboot", function()
+        awesome.exec("sudo chroot /host reboot")
+    end }
 }
 
 mymainmenu = awful.menu({ items = {
@@ -135,7 +137,7 @@ mymainmenu = awful.menu({ items = {
     { "Utils", menuutils },
     --[Disable] { "Debian", debian.menu.Debian_menu.Debian },
     { "Config", menuconfig },
-    --[Disable] {"Power", menupower },
+    {"Power", menupower },
 }})
 
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),

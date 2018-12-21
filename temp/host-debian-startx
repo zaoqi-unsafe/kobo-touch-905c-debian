@@ -14,7 +14,8 @@ mount -o bind,user,rw,exec,umask=000 /mnt/onboard /debian/mnt/onboard
 mount -o bind / /debian/host
 
 cp -L /etc/wpa_supplicant/wpa_supplicant.conf /debian/etc/wpa_supplicant/wpa_supplicant.conf
-cp -L /etc/resolv.conf /debian/etc/resolv.conf
+sed -i '/disable/d' /debian/etc/wpa_supplicant/wpa_supplicant.conf
+#cp -L /etc/resolv.conf /debian/etc/resolv.conf
 cp /etc/hosts /debian/etc/hosts
 grep -v debian /proc/mounts > /debian/etc/mtab
 
